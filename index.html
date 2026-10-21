@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoom Layout</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-nav">
+    <div class="logo-area"><i class="ph-fill ph-target logo-icon"></i>Zoomeet</div>
+    <nav class="nav-links">
+      <a href="#!" class="navlink interactive-btn"><i class="ph ph-squares-four"></i><span>Dashboard</span></a>
+      <a href="#!" class="navlink interactive-btn"><i class="ph ph-chat-circle-dots"></i><span>Chat</span></a>
+      <a href="#!" class="navlink interactive-btn active"><i class="ph-fill ph-video-camera"></i><span>Meetings</span></a>
+      <a href="#!" class="navlink interactive-btn"><i class="ph ph-users"></i><span>Contact</span></a>
+    </nav>
+    <div class="user-actions">
+      <button class="icon-btn interactive-btn" id="theme-toggle" title="Toggle Mode">
+        <i class="ph ph-moon"></i>
+      </button>
+      <button class="icon-btn interactive-btn hide-mobile">
+        <i class="ph ph-gear"></i>
+      </button>
+      <img src="0015.jpg" alt="" class="avatar interactive-btn">
+    </div>
+  </header>
+
+  <main class="app-main">
+    <section class="meeting-board">
+      <div class="meeting-header">
+        <div class="meeting-title">
+          <h1>UI/UX Design Conference Meeting</h1>
+          <div class="meeting-subtitle">
+            <span>Week 2 * Daily Report</span>
+            <span id="current-date">Thu 09 June 2026</span>
+          </div>
+        </div>
+        <div class="timer-badge">
+          <span class="dot"></span>
+          <span id="timer">02:00:21</span>
+        </div>
+      </div>
+      <div class="stats-bar">
+        <div class="stat-pill pill-green interactive-btn">
+          <i class="ph ph-envelope-simple"></i>Invited
+          <span class="count">6</span>
+        </div>
+        <div class="stat-pill pill-red interactive-btn">
+          <i class="ph ph-user-minus"></i>Absent
+          <span class="count">2</span>
+        </div>
+        <div class="stat-pill pill-blue interactive-btn">
+          <i class="ph ph-users"></i>Joined
+          <span class="count">34</span>
+        </div>
+        <button class="btn-add interactive-btn">
+          <i class="ph ph-user-plus"></i>Add People
+        </button>
+      </div>
+      <div class="video-gallery">
+        <div class="video-card main-video" id="main-video">
+          <video autoplay loop muted playsinline poster="video.png">
+            <source src="video.mp4" type="video/mp4">Your browser does not support HTML5 video streaming
+          </video>
+          <div id="video-placeholder" class="video-placeholder">
+            <img src="video.png" alt="" class="placeholder-avatar">
+            <div class="placeholder-overlay">
+              <i class="ph ph-video-camera-slash"></i>
+              <span>Camera Off</span>
+            </div>
+          </div>
+          <div id="reaction-picker" class="reaction-picker" style="display: none;">
+            <button onclick="sendReaction('&#128512;')">&#128512;</button>
+            <button onclick="sendReaction('&#128077;')">&#128077;</button>
+            <button onclick="sendReaction('&#129505;')">&#129505;</button>
+            <button onclick="sendReaction('&#127881;')">&#127881;</button>
+            <button onclick="sendReaction('&#127867;')">&#127867;</button>
+          </div>
+          <div class="overlay-controls">
+            <button class="control-btn interactive-btn active-blue">
+              <i class="ph ph-arrows-out-simple"></i>
+            </button>
+            <button class="control-btn interactive-btn">
+              <i class="ph ph-lock-key"></i>
+            </button>
+            <button class="control-btn interactive-btn">
+              <i class="ph ph-star"></i>
+            </button>
+          </div>
+          <div class="name-tag">
+            <i class="ph ph-fill ph-user-circle pulsating-icon" style="color: var(--brand-primary); font-size: 1.2rem;"></i>Michaela Bosark
+          </div>
+          <div class="main-video-actions">
+            <button class="action-btn interactive-btn" id="btn-toggle-mic"><i class="ph ph-microphone-slash"></i></button>
+            <button class="action-btn interactive-btn" id="btn-toggle-cam"><i class="ph ph-video-camera"></i></button>
+            <button class="action-btn interactive-btn hang-up" id="btn-hang-up"><i class="ph-fill ph-phone-disconnect"></i></button>
+            <button class="action-btn interactive-btn" id="btn-toggle-reactions"><i class="ph ph-smiley"></i></button>
+          </div>
+        </div>
+        <div class="side-video-wrap">
+          <div class="video-card">
+            <img src="ls001.jpg" alt="">
+            <div class="overlay-controls">
+              <div class="control-btn active-red" style="width: 30px; height: 30px; font-size: 1rem;">
+                <i class="ph ph-microphone-slash"></i>
+              </div>
+            </div>
+            <div class="name-tag">Dimitry Polians</div>
+          </div>
+          <div class="video-card">
+            <img src="ls004.jpg" alt="">
+            <div class="overlay-controls">
+              <div class="control-btn active-blue" style="width: 30px; height: 30px; font-size: 1rem;">
+                <i class="ph ph-wave-sine"></i>
+              </div>
+            </div>
+            <div class="name-tag">Christian Haguen</div>
+          </div>
+          <div class="video-card">
+            <img src="ls005.jpg" alt="">
+            <div class="overlay-controls">
+              <div class="control-btn active-red" style="width: 30px; height: 30px; font-size: 1rem;">
+                <i class="ph ph-microphone-slash"></i>
+              </div>
+            </div>
+            <div class="name-tag">Andrew Londre</div>
+          </div>
+        </div>
+      </div>
+      <div class="global-actions">
+        <button class="global-btn interactive-btn" id="global-btn-mic">
+          <i class="ph ph-microphone-slash"></i>
+          <span>Unmute</span>
+        </button>
+        <button class="global-btn interactive-btn" id="global-btn-cam">
+          <i class="ph ph-video-camera"></i>
+          <span>Stop Video</span>
+        </button>
+        <button class="global-btn active interactive-btn hide-mobile">
+          <i class="ph ph-projector-screen-chart"></i>
+          <span>Share Video</span>
+        </button>
+        <button class="global-btn interactive-btn" onclick="toggleMobileSheet('participants')">
+          <i class="ph ph-users"></i>
+          <span>Participants</span>
+        </button>
+        <button class="global-btn interactive-btn" onclick="toggleMobileSheet('chat')">
+          <i class="ph ph-chat-teardrop-dots"></i>
+          <span>Chat</span>
+        </button>
+        <button class="global-btn interactive-btn hide-mobile">
+          <i class="ph ph-record"></i>
+          <span>Record</span>
+        </button>
+        <button class="global-btn interactive-btn hide-mobile">
+          <i class="ph ph-dots-three"></i>
+          <span>More</span>
+        </button>
+      </div>
+      <div class="live-chat-feed-container hide-desktop">
+        <span class="captions-badge">
+          <i class="ph-fill ph-chat-teardrop-dots"></i>
+          live Group Chat Feeds
+        </span>
+        <p class="caption-text">
+          Christian Haguen: Hey everyone! I just uploaded the latest mockups
+        </p>
+      </div>
+    </section>
+    <aside class="sidebar" id="mobile-sidebar">
+      <div class="panel participants-panel" id="participants-panel">
+        <div class="panel-header">
+          <div class="panel-title">Participants
+            <span class="badge">34</span>
+          </div>
+          <button class="icon-btn mobile-close-btn interactive-btn" onclick="closeMobileSheet()">
+            <i class="ph ph-x"></i>
+          </button>
+          <button class="icon-btn interactive-btn hide-mobile">
+            <i class="ph ph-dots-three"></i>
+          </button>
+        </div>
+        <div class="participants-list">
+          <div class="participant-item">
+            <div class="user-info">
+              <img src="008.jpg" class="avatar" alt="">
+              <span>Paul Lavender</span>
+            </div>
+            <div class="user-status">
+              <i class="ph ph-microphone-slash"></i>
+              <i class="ph ph-video-camera active-cam"></i>
+            </div>
+          </div>
+          <div class="participant-item">
+            <div class="user-info">
+              <img src="video.png" class="avatar" alt="">
+              <span>Michaela Bosark</span>
+            </div>
+            <div class="user-status">
+              <i class="ph-fill ph-microphone active-mic"></i>
+              <i class="ph-fill ph-video-camera active-cam"></i>
+            </div>
+          </div>
+          <div class="participant-item">
+            <div class="user-info">
+              <img src="0015.jpg" class="avatar" alt="">
+              <span>Andrew Londre</span>
+            </div>
+            <div class="user-status">
+              <i class="ph ph-microphone-slash"></i>
+              <i class="ph ph-video-camera-slash"></i>
+            </div>
+          </div>
+          <div class="participant-item">
+            <div class="user-info">
+              <img src="0024.jpg" class="avatar" alt="">
+              <span>Christian Haguen</span>
+            </div>
+            <div class="user-status">
+              <i class="ph ph-microphone-slash"></i>
+              <i class="ph-fill ph-video-camera active-cam"></i>
+            </div>
+          </div>
+          <div class="participant-item">
+            <div class="user-info">
+              <img src="0026.jpg" class="avatar" alt="">
+              <span>Dimitry Polians</span>
+            </div>
+            <div class="user-status">
+              <i class="ph-fill ph-microphone active-mic"></i>
+              <i class="ph-fill ph-video-camera active-cam"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-chat" id="panel-chat">
+        <div class="panel-header">
+          <div class="panel-title">
+            In-call Messages
+            <span class="badge" style="background: var(--brand-danger);">2</span>
+          </div>
+          <button onclick="closeMobileSheet()" class="icon-btn mobile-close-btn interactive-btn">
+            <i class="ph ph-x"></i>
+          </button>
+          <button class="icon-btn interactive-btn hide-mobile">
+            <i class="ph ph-dots-three"></i>
+          </button>
+        </div>
+        <div class="chat-messages" id="chat-container">
+          <div class="message">
+            <div class="msg-header">
+              <div class="msg-user">
+                <img src="008.jpg" alt="" class="avatar">Paul Lavender
+              </div>
+              <div class="msg-time">10:42 AM</div>
+            </div>
+            <div class="msg-bubble">
+              Hey everyone, are we reviewing the new Figma prototype today? &#128512;
+            </div>
+          </div>
+          <div class="message right">
+            <div class="msg-header">
+              <div class="msg-user">
+                <img src="0015.jpg" class="avatar" alt="">
+                Andrew Londre
+              </div>
+              <div class="msg-time">Just now</div>
+            </div>
+            <div class="msg-bubble">
+              Yes! Let me share my screen shortly.
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <div id="chat-emoji-picker" class="chat-emoji-picker" style="display: none;">
+            <button onclick="appendChatEmoji('&#128512;')">&#128512;</button>
+            <button onclick="appendChatEmoji('&#128077;')">&#128077;</button>
+            <button onclick="appendChatEmoji('&#129505;')">&#129505;</button>
+            <button onclick="appendChatEmoji('&#127881;')">&#127881;</button>
+            <button onclick="appendChatEmoji('&#127867;')">&#127867;</button>
+          </div>
+          <div class="chat-input-box">
+            <button id="btn-chat-emoji" class="interactive-btn">
+              <i class="ph ph-smiley"></i>
+            </button>
+            <input type="text" id="chat-input" placeholder="Message everyone...">
+            <button class="interactive-btn">
+              <i class="ph ph-paperclip"></i>
+            </button>
+            <button id="btn-send" class="interactive-btn">
+              <i class="ph ph-fill ph-paper-plane-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div id="end-meeting-modal" class="meeting-modal" style="display: none; opacity: 0; visibility: hidden;">
+      <div class="modal-content">
+        <i class="ph-fill ph-phone-disconnect modal-icon"></i>
+        <h2>Call Finished</h2>
+        <p>You have left the UI/UX Design Conference. Your session has safely closed</p>
+        <button class="modal-btn interactive-btn" id="btn-rejoin">Rejoin Session</button>
+      </div>
+    </div>
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+  </main>
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="main.js"></script>
+</body>
+</html>
